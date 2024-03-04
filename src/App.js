@@ -9,12 +9,38 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Single from "./pages/single";
 import Write from "./pages/write";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Outlet } from "react-router-dom";
 
+
+const Layout = () => {
+  return(
+    <>
+    <Navbar/>
+    <Outlet/>
+    <Footer/>
+    </>
+  )
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Layout/>,
+    children: [
+      {
+        path:"/",
+        element: <Home/>
+      },
+      {
+        path:"/post/:id",
+        element: <Single/>
+      }, {
+        path:"/write",
+        element: <Write/>
+      },  
+    ]
   },
   {
     path: "/register",
@@ -23,28 +49,21 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>,
-  },
-  {
-    path: "/home",
-    element: <Home/>,
-  },
-  {
-    path: "/single",
-    element: <Single/>,
-  },
-  {
-    path: "/write",
-    element: <Write/>,
-  },
+  }
 ]);
 
 
 function App() {
   return (
-    <div>
+    <div className="app">
+    <div className="container">
       <RouterProvider router={router} />
+    </div>
     </div>
   );
 }
+
+
+
 
 export default App;
