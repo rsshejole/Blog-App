@@ -12,6 +12,7 @@ import Write from "./pages/write";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
+import "./styles.css"
 
 
 const Layout = () => {
